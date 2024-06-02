@@ -233,23 +233,30 @@ def infer_uploaded_video(conf, model_object, model_char):
 
 
 def infer_uploaded_webcam(conf, model_object, model_char):
-    """
+        """
     Execute inference for webcam.
-    :param conf: Confidence of YOLOv8 model
+    :param conf: Confidence of YOLOv8 model.
     :param model_object: An instance of the `YOLOv8` class containing the YOLOv8 model.
     :return: None
     """
     try:
         vid_cap = cv2.VideoCapture(0)  # Open the local webcam by index 0
+
+        # Check if the webcam opened successfully
+        if not vid_cap.isOpened():
+            st.error("Cannot open webcam. Please check your webcam settings.")
+            return
+
         st_count = st.empty()
         st_frame = st.empty()
+        st_table = st.empty()
         stop_button_clicked = False
 
         while not stop_button_clicked:
             stop_button_clicked = st.button(label="Stop running")
             success, image = vid_cap.read()
             if success:
-                annotated_image, count = _display_detected_frames(
+                annotated_image, count, detections_df = _display_detected_frames(
                     conf,
                     model_object,
                     st_count,
@@ -258,6 +265,7 @@ def infer_uploaded_webcam(conf, model_object, model_char):
                 )
                 st_count.write(f"Total Detections: {count}")
                 st_frame.image(annotated_image, channels='BGR')
+                st_table.write(detections_df)
             else:
                 st.error("Error reading from webcam.")
                 break
