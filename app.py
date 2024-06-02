@@ -63,7 +63,7 @@ if source_selectbox == config.SOURCES_LIST[0]: # Image
     infer_uploaded_image(confidence, model_object, model_char)
 elif source_selectbox == config.SOURCES_LIST[1]: # Video
     infer_uploaded_video(confidence, model_object, model_char)
-elif source_selectbox == config.SOURCES_LIST[2]: # Webcam
-    infer_uploaded_webcam(confidence, model_object, model_char)
+#elif source_selectbox == config.SOURCES_LIST[2]: # Webcam
+    #infer_uploaded_webcam(confidence, model_object, model_char)
 else:
     st.error("Currently only 'Image' and 'Video' source are implemented")
