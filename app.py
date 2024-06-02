@@ -15,7 +15,7 @@ st.set_page_config(
 st.title("Zaman Pardaz Parking (AI Department)")
 
 # sidebar
-st.sidebar.header("DL Model Config")
+st.sidebar.header("Model Config")
 
 # model options
 task_type = st.sidebar.selectbox(
