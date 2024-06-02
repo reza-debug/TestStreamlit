@@ -233,7 +233,7 @@ def infer_uploaded_video(conf, model_object, model_char):
 
 
 def infer_uploaded_webcam(conf, model_object, model_char):
-        """
+    """
     Execute inference for webcam.
     :param conf: Confidence of YOLOv8 model.
     :param model_object: An instance of the `YOLOv8` class containing the YOLOv8 model.
